@@ -1,0 +1,51 @@
+name: Salesforce Deployment Test-Org
+
+on:
+  push:
+    paths:
+      - 'force-app/**'
+    branches:
+      - Salesforce-Devbranch
+  pull_request:
+    branches:
+      - Salesforce-Devbranch
+  workflow_dispatch:
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Salesforce CLI
+        run: npm install -g sfdx-cli
+
+      - name: Authenticate with JWT
+        run: |
+          echo "${{ secrets.SF_JWT_KEY }}" > server.key
+          sfdx auth:jwt:grant --clientid ${{ secrets.SF_CLIENT_ID }} \
+                              --jwtkeyfile server.key \
+                              --username ${{ secrets.SF_USERNAME }} \
+                              --instanceurl ${{ secrets.SF_INSTANCE_URL }}
+
+      - name: Push Source to Org
+        run: sfdx force:source:push
+
+      - name: Run Apex Tests with Coverage
+        run: |
+          sfdx force:apex:test:run --resultformat json --codecoverage \
+                                   --outputdir test-results --wait 10
+
+      - name: Check Code Coverage
+        run: |
+          COVERAGE=$(jq '[.records[].coverage.coveredLines / .records[].coverage.totalLines * 100] | add / length' test-results/test-result.json)
+          echo "Average Code Coverage: $COVERAGE%"
+          if (( $(echo "$COVERAGE < 75" | bc -l) )); then
+            echo "Code coverage is below 75%. Failing the deployment."
+            exit 1
+          fi
+
+      - name: Deploy to Org
+        run: |
+          sfdx force:source:deploy -p force-app -u ${{ secrets.SF_USERNAME }} --checkonly
