@@ -5,7 +5,9 @@
         <name>ApexClass</name>
     </types>
     <types>
-        <members>*</members>
+        <members>Account1_c</members>
+        <members>Account_c</members>
+        <members>Lead_c</members>
         <name>CustomObject</name>
     </types>
     <types>
