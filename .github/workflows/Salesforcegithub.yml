@@ -29,14 +29,14 @@ jobs:
                               --username ${{ secrets.SF_USERNAME }} \
                               --instanceurl ${{ secrets.SF_INSTANCE_URL }}
 
-      - name: Push source to org
-        run: |
-          sfdx force:source:push --targetusername "${{ secrets.SF_USERNAME }}" --loglevel DEBUG
 
       - name: Run Apex Tests with Coverage
         run: |
           sfdx force:apex:test:run --resultformat json --codecoverage \
                                    --outputdir test-results --wait 10
+      - name: Push source to org
+        run: |
+          sfdx sfdx force:source:deploy --targetusername "${{ secrets.SF_USERNAME }}" --loglevel DEBUG
 
       - name: Check Code Coverage
         run: |
