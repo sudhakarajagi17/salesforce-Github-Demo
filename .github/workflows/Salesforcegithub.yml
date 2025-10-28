@@ -29,6 +29,8 @@ jobs:
                               --username ${{ secrets.SF_USERNAME }} \
                               --instanceurl ${{ secrets.SF_INSTANCE_URL }}
 
-      - name: Push source to org
-        run: |
-           sfdx force:source:deploy -p force-app/main/default --targetusername "${SF_USERNAME}" --wait 10 --verbose
+      - name: Deploy source to org
+       run: |
+         set -euo pipefail
+         echo "Deploying force-app/main/default..."
+         sfdx force:source:deploy -p force-app/main/default --targetusername "${{ secrets.SF_USERNAME }}" --wait 10 --verbose
