@@ -5,10 +5,10 @@ on:
     paths:
       - 'force-app/**'
     branches:
-      - Salesforce-Devbranch
+      - main
   pull_request:
     branches:
-      - Salesforce-Devbranch
+      - main
   workflow_dispatch:
 
 jobs:
