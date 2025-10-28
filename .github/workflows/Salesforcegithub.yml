@@ -32,7 +32,3 @@ jobs:
       - name: Push source to org
         run: |
           sfdx sfdx force:source:deploy --targetusername "${{ secrets.SF_USERNAME }}" --loglevel DEBUG
-
-     
-      #  run: |
-          sfdx force:source:deploy -p force-app -u ${{ secrets.SF_USERNAME }} --checkonly
