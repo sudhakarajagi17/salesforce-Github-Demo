@@ -2,11 +2,11 @@
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>57.0</apiVersion>
     <fullName>Account1__c</fullName>
-    <label>Account_Name</label>
-    <pluralLabel>Account_Names</pluralLabel>
+    <label>Account1__c</label>
+    <pluralLabel>Account1__cs</pluralLabel>
     <nameField>
         <type>Text</type>
-        <label>Account_Name</label>
+        <label>Account1__c</label>
     </nameField>
     <deploymentStatus>Deployed</deploymentStatus>
     <sharingModel>ReadWrite</sharingModel>
