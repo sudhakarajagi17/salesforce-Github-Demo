@@ -24,7 +24,7 @@ jobs:
       - name: Authenticate with JWT
         run: |
           echo "${{ secrets.SF_JWT_KEY }}" > server.key
-          sfdx auth:jwt:grant --clientid ${{ secrets.SF_CLIENT_ID }} \
+          sfdx force:auth:jwt:grant --clientid ${{ secrets.SF_CLIENT_ID }} \
                               --jwtkeyfile server.key \
                               --username ${{ secrets.SF_USERNAME }} \
                               --instanceurl ${{ secrets.SF_INSTANCE_URL }}
