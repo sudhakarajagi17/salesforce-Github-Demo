@@ -3,7 +3,7 @@
     <apiVersion>57.0</apiVersion>
     <fullName>Account1__c</fullName>
     <label>Account</label>
-    <pluralLabel>CustomAccounts</pluralLabel>
+    <pluralLabel>Account_Names</pluralLabel>
     <nameField>
         <type>Text</type>
         <label>Account_Name</label>
