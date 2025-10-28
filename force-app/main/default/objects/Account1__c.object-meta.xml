@@ -6,7 +6,7 @@
     <pluralLabel>Account1__cs</pluralLabel>
     <nameField>
         <type>Text</type>
-        <label>Account1__c</label>
+        <label>Account Name</label>
     </nameField>
     <deploymentStatus>Deployed</deploymentStatus>
     <sharingModel>ReadWrite</sharingModel>
