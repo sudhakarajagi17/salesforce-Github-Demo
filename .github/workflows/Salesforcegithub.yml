@@ -31,4 +31,4 @@ jobs:
 
       - name: Push source to org
         run: |
-          sfdx sfdx force:source:deploy --targetusername "${{ secrets.SF_USERNAME }}" --loglevel DEBUG
+           sfdx force:source:deploy --targetusername "${{ secrets.SF_USERNAME }}" --loglevel DEBUG
